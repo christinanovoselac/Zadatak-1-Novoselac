@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator stambenog kredita</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+</head>
+<body>
+
+    <!-- Glavni kontejner kalkulatora (podijeljen na lijevu i desnu stranu) -->
+    <main class="calculator-container">
+
+        <!-- Lijeva strana: Forma za unos podataka -->
+        <section class="calculator-form-section">
+            
+            <!-- Zaglavlje s naslovom i gumbom za resetiranje -->
+            <header class="calculator-header">
+                <h1>Mortgage Calculator</h1>
+                <button type="button" class="btn-clear">Clear All</button>
+            </header>
+
+            <form action="#" method="POST">
+                
+                  <form action="#" method="POST" novalidate> <!-- novalidate isključuje zadane poruke preglednika -->
+                
+                <!-- Grupa 1: Iznos kredita -->
+                <div class="form-group full-width" id="group-amount">
+                    <label for="mortgage-amount">Mortgage Amount</label>
+                    <div class="input-with-prefix">
+                        <span class="prefix">£</span>
+                        <input type="number" id="mortgage-amount" name="mortgage-amount" required>
+                    </div>
+                    <span class="error-message">This field is required</span>
+                </div>
+
+                <!-- Red s dva polja: Rok otplate i Kamatna stopa -->
+                <div class="form-row">
+                    
+                    <!-- Grupa 2: Rok otplate -->
+                    <div class="form-group half-width" id="group-term">
+                        <label for="mortgage-term">Mortgage Term</label>
+                        <div class="input-with-suffix">
+                            <input type="number" id="mortgage-term" name="mortgage-term" required>
+                            <span class="suffix">years</span>
+                        </div>
+                        <span class="error-message">This field is required</span>
+                    </div>
+
+                    <!-- Grupa 3: Kamatna stopa -->
+                    <div class="form-group half-width" id="group-rate">
+                        <label for="interest-rate">Interest Rate</label>
+                        <div class="input-with-suffix">
+                            <input type="number" id="interest-rate" name="interest-rate" step="0.01" required>
+                            <span class="suffix">%</span>
+                        </div>
+                        <span class="error-message">This field is required</span>
+                    </div>
+
+                </div>
+
+                <!-- Grupa 4: Vrsta kredita -->
+                <fieldset class="form-group" id="group-type">
+                    <legend>Mortgage Type</legend>
+                    
+                    <label class="radio-label">
+                        <input type="radio" name="mortgage-type" value="repayment">
+                        Repayment
+                    </label>
+
+                    <label class="radio-label">
+                        <input type="radio" name="mortgage-type" value="interest-only">
+                        Interest Only
+                    </label>
+                    <span class="error-message">This field is required</span>
+                </fieldset>
+
+                <!-- Gumb za izračun -->
+                <button type="submit" class="btn-submit">
+                    <img src="icon-calculator.svg" alt="" class="btn-icon" aria-hidden="true"> 
+                    Calculate Repayments
+</button>
+
+            </form>
+        </section>
+
+        <!-- Desna strana: Prikaz rezultata (Tamni panel) -->
+<!-- Desna strana: Prikaz rezultata -->
+        <section class="calculator-results-section">
+            
+            <!-- STANJE 1: Prazno stanje (Prikazuje se na početku) -->
+            <div id="results-empty" class="results-empty-state">
+                <img src="illustration-empty.svg" alt="Ilustracija kalkulatora" class="results-illustration">
+                <h2>Results shown here</h2>
+                <p>Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>
+            </div>
+
+            <!-- STANJE 2: Aktivno stanje s rezultatima (Skriveno na početku) -->
+            <div id="results-active" class="results-active-state" style="display: none;">
+                <h2>Your results</h2>
+                <p class="results-description">Your results are shown below based on the information you provided. To adjust the results, edit the form and click "calculate repayments" again.</p>
+                
+                <!-- Unutarnja tamna kartica s rezultatima -->
+                <div class="results-card">
+                    <div class="result-box-monthly">
+                        <span class="result-label">Your monthly repayments</span>
+                        <span id="monthly-result-text" class="result-value-big">£0.00</span>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="result-box-total">
+                        <span class="result-label">Total you'll repay over the term</span>
+                        <span id="total-result-text" class="result-value-small">£0.00</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
